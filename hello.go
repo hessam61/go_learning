@@ -2,11 +2,14 @@ package main
 
 import "fmt"
 
+type Salutation struct {
+	name string
+	greeting string
+}
+
 func main() {
 
-	message := "Hello Go World!"
+	var s = Salutation{name: "Joe", greeting: "Hello!"}
 
-	var greeting *string = &message
-
-	fmt.Println(message, *greeting)
+	fmt.Println(s.name, s.greeting)
 }
