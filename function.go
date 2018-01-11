@@ -12,10 +12,10 @@ const(
 	Language = "Go"
 )
 
-func Greet(salutation Salutation){
+func Greet(salutation Salutation, do func(string)){
 	message, alternate := CreateMessage(salutation.name, salutation.greeting, "Howdy")
-	fmt.Println(message)
-	fmt.Println(alternate)
+	do(message)
+	do(alternate)
 }
 
 func CreateMessage(name string, greeting ...string) (message string, alternate string) {
@@ -25,10 +25,18 @@ func CreateMessage(name string, greeting ...string) (message string, alternate s
 	return
 }
 
+func Print(s string){
+	fmt.Print(s)
+}
+
+func Println(s string){
+	fmt.Println(s)
+}
+
 func main() {
 
 	var s = Salutation{name: "Joe", greeting: "Hello"}
 
-	Greet(s)
+	Greet(s, Println)
 
 }
