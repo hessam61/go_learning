@@ -18,8 +18,10 @@ func Greet(salutation Salutation){
 	fmt.Println(alternate)
 }
 
-func CreateMessage(name, greeting string) (string, string) {
-	return greeting + " " + name, "HEY!"  + name
+func CreateMessage(name, greeting string) (message string, alternate string) {
+	message = greeting + " " + name
+	alternate = "HEY!"  + name
+	return
 }
 
 func main() {
