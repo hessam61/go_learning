@@ -7,12 +7,14 @@ type Salutation struct {
 	greeting string
 }
 
+type Printer func(string)()
+
 const(
 	PI = 3.14
 	Language = "Go"
 )
 
-func Greet(salutation Salutation, do func(string)){
+func Greet(salutation Salutation, do Printer){
 	message, alternate := CreateMessage(salutation.name, salutation.greeting, "Howdy")
 	do(message)
 	do(alternate)
@@ -33,10 +35,20 @@ func Println(s string){
 	fmt.Println(s)
 }
 
+func CreatePrintFunction(custom string) Printer {
+	return func(s string) {
+		fmt.Println(s + custom)
+	}
+}
+
+func PrintCustom(s string, custom string){
+	fmt.Println(s + custom)
+}
+
 func main() {
 
 	var s = Salutation{name: "Joe", greeting: "Hello"}
 
-	Greet(s, Println)
+	Greet(s, CreatePrintFunction("!!"))
 
 }
